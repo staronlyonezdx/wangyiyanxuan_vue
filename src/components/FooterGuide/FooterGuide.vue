@@ -3,31 +3,31 @@
     <ul class="navbar">
       <li class="navbar-item" :class="{on:$route.path === '/home'}" @click="goTo('/home')">
         <span class="item_icon">
-          <i class="iconfont icon-shouye"></i>
+          <i class="iconfont icon-shouye2"></i>
         </span>
         <span class="title">首页</span>
       </li>
       <li class="navbar-item" :class="{on:$route.path === '/topic'}" @click="goTo('/topic')">
         <span class="item_icon">
-          <i class="iconfont icon-fangkuaidagou-weixuanzhong"></i>
+          <i class="iconfont icon-fangkuai"></i>
         </span>
         <span class="title">识物</span>
       </li>
       <li class="navbar-item" :class="{on:$route.path === '/list'}" @click="goTo('/list')">
         <span class="item_icon">
-          <i class="iconfont icon-chouti"></i>
+          <i class="iconfont icon-fenlei"></i>
         </span>
         <span class="title">分类</span>
       </li>
       <li class="navbar-item" :class="{on:$route.path === '/shopCart'}" @click="goTo('/shopCart')">
         <span class="item_icon">
-          <i class="iconfont icon-gouwuche"></i>
+          <i class="iconfont icon-gouwuchekong"></i>
         </span>
         <span class="title">购物车</span>
       </li>
       <li class="navbar-item" :class="{on:$route.path === '/personal'}" @click="goTo('/personal')">
         <span class="item_icon">
-          <i class="iconfont icon-renwu"></i>
+          <i class="iconfont icon-icon-"></i>
         </span>
         <span class="title">个人</span>
       </li>

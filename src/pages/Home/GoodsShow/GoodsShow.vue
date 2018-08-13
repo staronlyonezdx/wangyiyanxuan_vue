@@ -4,7 +4,7 @@
       <ul class="goodsUl">
         <li class="goodsLi" v-for="(item,index) in data" :key="index">
           <div class="img">
-            <img :src="item.primaryPicUrl" alt="">
+            <img v-lazy="item.primaryPicUrl" alt="">
           </div>
           <div class="name">{{item.name}}</div>
           <div class="nameDoc">{{item.simpleDesc}}</div>
@@ -22,38 +22,60 @@
   import BScroll from 'better-scroll'
 
   export default {
-    data(){
-      return{
-        myClass:'goodsWrap'
+    data() {
+      return {
+        myClass: 'goodsWrap'
       }
     },
     props: {
       data: Array,
-      one:Number,
-      two:Number
+      one: Number,
+      two: Number
     },
-    watch: {
-      data() {
-        if(this.one === 1){
+    mounted() {
+      this.$store.dispatch("getHome", () => {
+        if (this.one === 1) {
           this.$nextTick(() => {
-            new BScroll('.goodsWrap',{
-              click:true,
-              scrollX:true
+            new BScroll('.goodsWrap', {
+              click: true,
+              scrollX: true
             })
           })
         }
 
-        if(this.two === 2){
+        if (this.two === 2) {
           this.myClass = 'goodsContainer'
           this.$nextTick(() => {
-            new BScroll('.goodsContainer',{
-              click:true,
-              scrollX:true
+            new BScroll('.goodsContainer', {
+              click: true,
+              scrollX: true
             })
           })
         }
-      }
-    }
+      })
+    },
+    // watch: {
+    //   goodsNew() {
+    //     if (this.one == 1) {
+    //       this.$nextTick(() => {
+    //         new BScroll('.goodsWrap', {
+    //           click: true,
+    //           scrollX: true
+    //         })
+    //       })
+    //     }
+    //
+    //     if (this.two === 2) {
+    //       this.myClass = 'goodsContainer'
+    //       this.$nextTick(() => {
+    //         new BScroll('.goodsContainer', {
+    //           click: true,
+    //           scrollX: true
+    //         })
+    //       })
+    //     }
+    //   }
+    // }
 
   }
 </script>
@@ -65,7 +87,7 @@
     height px2rem(440)
     background #fff
     margin-bottom px2rem(10)
-    .goodsWrap,.goodsContainer
+    .goodsWrap, .goodsContainer
       margin-left 20px
       display flex
       overflow hidden

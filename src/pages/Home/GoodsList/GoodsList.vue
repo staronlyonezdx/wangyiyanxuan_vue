@@ -1,31 +1,22 @@
 <template>
-  <div class="goodsList">
-    <h3 class="title">居家好物</h3>
-    <ul class="list">
-      <li class="item">
-        <img src="http://yanxuan.nosdn.127.net/1059f517cd4a529fcc3f9299f5173bef.png" alt="">
-        <div class="desc">宽细夹排，升级爽滑凉感</div>
-        <div class="name">天然宽篾头层青碳化竹凉席</div>
-        <div class="price">￥209.25</div>
-      </li>
-      <li class="item">
-        <img src="http://yanxuan.nosdn.127.net/1059f517cd4a529fcc3f9299f5173bef.png" alt="">
-        <div class="desc">宽细夹排，升级爽滑凉感</div>
-        <div class="name">天然宽篾头层青碳化竹凉席</div>
-        <div class="price">￥209.25</div>
-      </li>
-      <li class="item">
-        <img src="http://yanxuan.nosdn.127.net/1059f517cd4a529fcc3f9299f5173bef.png" alt="">
-        <div class="desc">宽细夹排，升级爽滑凉感</div>
-        <div class="name">天然宽篾头层青碳化竹凉席</div>
-        <div class="price">￥209.25</div>
-      </li>
-      <div class="more">
-        <p>更多居家好物</p>
-        <i></i>
-      </div>
-    </ul>
+  <div>
+    <div class="goodsList" v-for="(cate,index) in cateList" :key="index">
+      <h3 class="title">{{cate.name}}好物</h3>
+      <ul class="list">
+        <li class="item" v-for="(item,index) in cate.itemList" :key="index">
+          <img v-lazy="item.listPicUrl" alt="">
+          <div class="desc">{{item.simpleDesc}}</div>
+          <div class="name">{{item.name}}</div>
+          <div class="price">￥{{item.retailPrice}}</div>
+        </li>
+        <div class="more">
+          <p>更多{{cate.name}}好物</p>
+          <i></i>
+        </div>
+      </ul>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -50,16 +41,20 @@
       text-align center
 
     .list
-      display flex
-      justify-content space-around
-      flex-flow row wrap
-      overflow hidden
       .item
-        background-color #f4f4f4
-        width px2rem(345)
+        background-color #fff
+        width 50%
+        float left
+        box-sizing border-box
+        clearFix()
+        &:nth-child(odd)
+          padding 0 px2rem(10) px2rem(33) px2rem(20)
+        &:nth-child(even)
+          padding 0 px2rem(20) px2rem(33) px2rem(10)
         img
           width px2rem(345)
           height px2rem(345)
+          background #f4f4f4
         .desc
           width 100%
           padding px2rem(20) px2rem(10)
@@ -86,6 +81,30 @@
           color $main
           padding 0 px2rem(10)
 
+      .more
+        width px2rem(345)
+        height px2rem(416)
+        border-radius px2rem(4)
+        padding px2rem(128) 0
+        box-sizing border-box
+        display flex
+        flex-direction column
+        align-items center
+        justify-content center
+        background more
+        background #f4f4f4
+        p
+          color #333333
+          font-size px2rem(32)
+          line-height px2rem(32)
+          margin-bottom px2rem(60)
 
-
+        i
+          display block
+          background url('../../../assets/images/gsmove.png')
+          vertical-align middle
+          background-repeat no-repeat
+          backgroung-size 100% 100%
+          width px2rem(66)
+          height px2rem(66)
 </style>

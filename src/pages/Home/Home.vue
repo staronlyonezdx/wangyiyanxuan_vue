@@ -82,11 +82,11 @@
             <div class="itemLeft">
               <div class="title">严选限时购</div>
               <div class="countNum">
-                <span class="time">00</span>
+                <span class="time">{{resetTime.h}}</span>
                 <span class="colon">:</span>
-                <span class="time">00</span>
+                <span class="time">{{resetTime.m}}</span>
                 <span class="colon">:</span>
-                <span class="time">00</span>
+                <span class="time">{{resetTime.s}}</span>
               </div>
               <div class="nextTitle">下一场 22:00 开始</div>
             </div>
@@ -117,7 +117,7 @@
             <div class="goodsScroll">
               <ul class="wrapGoods">
                 <li class="goodItem" v-for="(item,index) in mainTopic" :key="index">
-                  <img :src="item.itemPicUrl" alt="">
+                  <img v-lazy="item.itemPicUrl" alt="">
                   <div class="line">
                     <h4 class="title">{{item.title}}</h4>
                     <span class="price">{{item.priceInfo}}元起</span>
@@ -131,7 +131,6 @@
 
         <GoodsList :cateList="cateList"/>
 
-        <div class="whiteSpace"></div>
 
         <div class="copyright">
           <div class="content">
@@ -170,7 +169,7 @@
   export default {
     data() {
       return {
-        time: [2, 60, 60]
+        time: new Date("2018/8/13,23:0:0")
       }
     },
     components: {
@@ -183,27 +182,10 @@
       GoodsList
     },
     computed: {
-      ...mapState(['goodSale', 'goodsNew', 'goodsPopular', 'mainTopic','cateList']),
+      ...mapState(['goodSale', 'goodsNew', 'goodsPopular', 'mainTopic', 'cateList']),
       resetTime: {
         get() {
-          let arr = [];
-          let result = 1;
-          for (var i = 0; i < this.time.length; i++) {
-            if (this.time[i] !== 0) {
-              arr.push(this.time[i])
-            }
-          }
-
-          result = arr.reduce((pre, item) => pre * item, 1)
-          return result
-        },
-        set() {
-          let result = 1
-          this.time.forEach(item => {
-            result *= item
-          })
-          console.log(result)
-          return result
+          return this._initTime()
         }
       }
     },
@@ -219,15 +201,19 @@
             scrollX: true
           })
         })
-        this._initTime()
       })
     },
     methods: {
-      _initTime() {
-        this.timer = setTimeout(() => {
-          clearTimeout(this.timer)
-          this.time = [2, 60, 60]
-        }, 2 * 60 * 60 * 1000)
+      _initTime(){
+        let endTime = this.time;
+        let nowTime = new Date();
+        let t = endTime.getTime() - nowTime.getTime();
+        let d = parseInt(t / (1000 * 60 * 60 * 24));
+        let h = parseInt((t / (1000 * 60 * 60) % 24) + 24 * d);
+        let m = parseInt(t / (1000 * 60) % 60);
+        let s = parseInt(t / 1000 % 60);
+        setInterval(this._initTime, 1000);
+        return {h,m,s}
       }
     }
   }
@@ -238,6 +224,7 @@
   .home
     width 100%
     height 100%
+    background white
     .head
       background-color #ffffff
       position fixed
@@ -271,6 +258,7 @@
       .whiteSpace
         width 100%
         height px2rem(20)
+        background #f4f4f4
       .goodSale
         background #fff
         margin-bottom 5px
@@ -394,7 +382,8 @@
                 font-size 30px
                 font-weight 700
                 width px2rem(20)
-              text-align center
+                text-align center
+                transform translateY(-50%)
             .nextTitle
               margin-top px2rem(40)
               color #333333
@@ -465,10 +454,10 @@
                 font-size px2rem(30)
                 ellipsis()
 
-
       .copyright
-        border-top 1px solid rgba(0,0,0,.15);
+        border-top 1px solid rgba(0, 0, 0, .15);
         background-color #414141
+        margin-top px2rem(120)
         .content
           text-align center
           padding px2rem(54) px2rem(20) px2rem(28) px2rem(20)

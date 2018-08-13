@@ -16,7 +16,21 @@ Mock.mock('/home', {
   tagList: home_data.tagList,
   newItemNewUserList: home_data.newItemNewUserList,
   popularItemList: home_data.popularItemList,
-  topicList:home_data.topicList,
-  cateList:home_data.cateList
+  topicList: home_data.topicList,
+  cateList: home_data.cateList
+})
+Mock.mock('/topic', {
+  code: 0,
+  banner: shiwu_data.banner,
+  column: shiwu_data.column,
+  recommend:[shiwu_data.recommendOne,[shiwu_data.recommendTwo,shiwu_data.recommendThree]],
+  zhenpin:[shiwu_data.zhenOne,[shiwu_data.zhenTwo,shiwu_data.zhenThree]],
+  tenfifteen:shiwu_data.tenfifteen,
+  yxLook:shiwu_data.yxLook,
+  findMore:shiwu_data.findMore
+})
+Mock.mock('/feileiData', {
+  code: 0,
+  categoryL1List: data_nav.categoryL1List
 })
 

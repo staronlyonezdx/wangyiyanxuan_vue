@@ -21,7 +21,7 @@
         <div class="img"></div>
         <div class="txt">
           <div class="cart-title">去添加点什么吧</div>
-          <div class="toLogin">登录</div>
+          <div class="toLogin" @click="$router.replace('/login')">登录</div>
         </div>
       </div>
     </div>
@@ -42,6 +42,7 @@
   .shopCart
     width 100%
     height 100%
+    background #f4f4f4
     .title
       width 100%
       height px2rem(88)

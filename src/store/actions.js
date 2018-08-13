@@ -1,5 +1,5 @@
-import {GETDATA, GETHOME} from './mutation-types'
-import {reqData, reqHome} from '../api/index'
+import {GETDATA, GETHOME, GETFENLEI, GETTOPIC} from './mutation-types'
+import {reqData, reqHome, reqFeilei, reqTopic} from '../api/index'
 
 export default {
   async getData({commit}, cb) {
@@ -17,9 +17,31 @@ export default {
         banner: result.focusList,
         goodSale: result.tagList,
         goodsNew: result.newItemNewUserList,
-        goodsPopular:result.popularItemList,
-        mainTopic:result.topicList,
-        cateList:result.cateList
+        goodsPopular: result.popularItemList,
+        mainTopic: result.topicList,
+        cateList: result.cateList
+      })
+      cb && cb()
+    }
+  },
+  async getFenlei({commit}, cb) {
+    const result = await reqFeilei()
+    if (result.code === 0) {
+      commit(GETFENLEI, {fenleiList: result.categoryL1List})
+      cb && cb()
+    }
+  },
+  async getTopic({commit}, cb) {
+    const result = await reqTopic()
+    if (result.code === 0) {
+      commit(GETTOPIC, {
+        topicBanner: result.banner,
+        column: result.column,
+        recommend: result.recommend,
+        zhenpin: result.zhenpin,
+        tenfifteen: result.tenfifteen,
+        yxLook: result.yxLook,
+        findMore: result.findMore
       })
       cb && cb()
     }

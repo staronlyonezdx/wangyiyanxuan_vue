@@ -57,7 +57,8 @@
     width 100%
     height px2rem(1334)
     background rgba(0, 0, 0, 0.5)
-    position relative
+    position fixed
+    top 0
     z-index 100
     .close
       width px2rem(64)

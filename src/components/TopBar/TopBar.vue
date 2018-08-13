@@ -24,11 +24,13 @@
     height px2rem(87)
     background #fafafa
     position fixed
+    z-index 50
     top 0
     left 0
     .bd
       padding-top 25px
       display flex
+      position relative
       .goHome
         width px2rem(48)
         height px2rem(44)
@@ -48,6 +50,8 @@
         margin-right 10px
         display flex
         margin-left 72px
+        position absolute
+        right 0
         .search
           display block
           width px2rem(55)

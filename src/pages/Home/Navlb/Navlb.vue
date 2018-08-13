@@ -2,7 +2,7 @@
   <div class="swiper-container" v-if="banner.length">
     <div class="swiper-wrapper" >
       <div class="swiper-slide" v-for="(b,index) in banner" :key="index">
-        <img :src="b.picUrl" alt="">
+        <img v-lazy="b.picUrl" alt="">
       </div>
     </div>
     <!-- Add Pagination -->
