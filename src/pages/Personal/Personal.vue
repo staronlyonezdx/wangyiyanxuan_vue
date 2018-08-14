@@ -6,13 +6,13 @@
         <img src="//yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png" alt="">
       </div>
       <div class="btnWrap">
-        <div class="btnBlock"  @click="handleClick('phone')">
+        <div class="btnBlock"  @click="$router.replace('/login/phone')">
           <i class="loginPhone"></i>
           <span>手机号码登陆</span>
         </div>
-        <div class="btnGhostRed" @click="handleClick">
+        <div class="btnGhostRed" @click="$router.replace('/login/email')">
           <i class="loginMail"></i>
-          <span @click="handleClick('mail')">邮箱账号登陆</span>
+          <span>邮箱账号登陆</span>
         </div>
         <div class="toLogin">
           <span>手机号快速注册</span>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
+  // import {mapGetters} from 'vuex'
   import TopBar from '../../components/TopBar/TopBar'
 
   export default {
@@ -46,13 +46,13 @@
       TopBar
     },
     computed:{
-      ...mapGetters(['loginType'])
+      // ...mapGetters(['loginType'])
     },
     methods: {
-      handleClick(type) {
-        this.loginType = type
-        this.$router.replace('/login')
-      }
+    //   handleClick(type) {
+    //     this.loginType = type
+    //     this.$router.replace('/login')
+    //   }
     }
   }
 </script>

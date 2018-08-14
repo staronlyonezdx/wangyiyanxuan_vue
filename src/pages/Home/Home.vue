@@ -81,13 +81,9 @@
           <a href="javascript:;">
             <div class="itemLeft">
               <div class="title">严选限时购</div>
-              <div class="countNum">
-                <span class="time">{{resetTime.h}}</span>
-                <span class="colon">:</span>
-                <span class="time">{{resetTime.m}}</span>
-                <span class="colon">:</span>
-                <span class="time">{{resetTime.s}}</span>
-              </div>
+              <count-down :currentTime="1481450106" :startTime="1481450110" :endTime="1499999999"
+                          :tipText="'活动即将开始'" :tipTextEnd="'活动结束了'" :endText="'活动结束了'"
+                          :dayTxt="'天'" :hourTxt="'小时'" :minutesTxt="'分钟'" :secondsTxt="'秒'"></count-down>
               <div class="nextTitle">下一场 22:00 开始</div>
             </div>
             <div class="itemRight">
@@ -99,6 +95,7 @@
             </div>
           </a>
         </div>
+
 
         <div class="whiteSpace"></div>
 
@@ -148,7 +145,9 @@
       </div>
     </div>
 
-    <GoTop/>
+    <div class="goTop" @click="goTop">
+      <i></i>
+    </div>
 
   </div>
 
@@ -157,42 +156,33 @@
 <script>
   import {mapState} from 'vuex'
   import BScroll from "better-scroll"
+  import CountDown from 'vue2-countdown'
+
 
   import HomeHeader from './HomeHeader/HomeHeader'
   import Navlb from './Navlb/Navlb'
   import GoodsShow from './GoodsShow/GoodsShow'
   import MaskLayer from '../../components/MaskLayer/Masklayer'
-  import GoTop from '../../components/GoTop/GoTop'
   import ListScroll from './ListScroll/ListScroll'
   import GoodsList from './GoodsList/GoodsList'
 
   export default {
-    data() {
-      return {
-        time: new Date("2018/8/13,23:0:0")
-      }
-    },
     components: {
       HomeHeader,
       Navlb,
       MaskLayer,
-      GoTop,
       GoodsShow,
       ListScroll,
-      GoodsList
+      GoodsList,
+      CountDown
     },
     computed: {
       ...mapState(['goodSale', 'goodsNew', 'goodsPopular', 'mainTopic', 'cateList']),
-      resetTime: {
-        get() {
-          return this._initTime()
-        }
-      }
     },
     mounted() {
       this.$store.dispatch('getHome', () => {
         this.$nextTick(() => {
-          new BScroll('.wrapScroll', {
+          this.wrapScroll = new BScroll('.wrapScroll', {
             click: true,
           })
 
@@ -204,16 +194,8 @@
       })
     },
     methods: {
-      _initTime(){
-        let endTime = this.time;
-        let nowTime = new Date();
-        let t = endTime.getTime() - nowTime.getTime();
-        let d = parseInt(t / (1000 * 60 * 60 * 24));
-        let h = parseInt((t / (1000 * 60 * 60) % 24) + 24 * d);
-        let m = parseInt(t / (1000 * 60) % 60);
-        let s = parseInt(t / 1000 % 60);
-        setInterval(this._initTime, 1000);
-        return {h,m,s}
+      goTop() {
+        this.wrapScroll.scrollTo(0,0,2000)
       }
     }
   }
@@ -374,11 +356,11 @@
                 height px2rem(56)
                 line-height px2rem(56)
                 border-radius px2rem(4)
-                color #ffffff
-                background #444444
+                color #ffffff !important
+                background #444444 !important
               .colon
                 display inline-block
-                color #333333
+                color #333333 !important
                 font-size 30px
                 font-weight 700
                 width px2rem(20)
@@ -478,4 +460,15 @@
             line-height px2rem(32)
             span
               font-size px2rem(24)
+
+    .goTop
+      position fixed
+      z-index 99
+      bottom px2rem(120)
+      right px2rem(34)
+      i
+        width px2rem(100)
+        height px2rem(100)
+        display block
+        background url('../../assets/images/goTop.png') no-repeat
 </style>

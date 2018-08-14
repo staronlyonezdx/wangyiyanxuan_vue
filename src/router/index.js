@@ -57,7 +57,7 @@ export default new VueRouter({
       }
     },
     {
-      path: '/login',
+      path: '/login/:type',
       component: Login,
       meta: {
         showFooter: false
@@ -65,7 +65,7 @@ export default new VueRouter({
     },
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/interPage'
     }
   ]
 })

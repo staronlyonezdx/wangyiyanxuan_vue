@@ -3,7 +3,7 @@
     <div class="detailWrap">
       <div class="detailContent">
         <div class="img" v-if="currentDetail">
-          <img v-lazy="currentDetail.bannerUrl" alt="">
+          <img :src="currentDetail.bannerUrl" alt="">
         </div>
 
         <div class="detailTit" v-if="currentDetail">
@@ -14,7 +14,7 @@
         <div class="detail">
           <ul class="detailUl" v-if="currentDetail">
             <li class="item" v-for="(sub,index) in currentDetail.subCateList" :key="index" v-if="sub">
-              <img v-lazy="sub.wapBannerUrl" alt="">
+              <img :src="sub.wapBannerUrl" alt="">
               <div>{{sub.name}}</div>
             </li>
           </ul>

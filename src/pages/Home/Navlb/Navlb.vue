@@ -47,13 +47,5 @@
         img
           width 100%
           height 100%
-  .swiper-pagination-bullet
-    width px2rem(40)
-    height px2rem(8)
-    display block
-    background #ffffff
-    opacity .4
-    border-radius 0
-  .swiper-pagination-bullet-active
-    opacity 1
+
 </style>

@@ -25,7 +25,7 @@
       width px2rem(140)
       height px2rem(40)
       background-image url('../../../assets/images/icons.png')
-      background-position -4px 236px
+      background-position px2rem(-4) px2rem(236)
       background-size 108%
       margin-right px2rem(20)
       display inline-block

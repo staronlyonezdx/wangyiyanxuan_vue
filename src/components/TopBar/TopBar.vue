@@ -28,28 +28,28 @@
     top 0
     left 0
     .bd
-      padding-top 25px
+      padding-top px2rem(25)
       display flex
       position relative
       .goHome
         width px2rem(48)
         height px2rem(44)
         display block
-        margin-left 20px
+        margin-left px2rem(20)
         background-image url('//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/hd-s342878591a-9af1a97852.png')
-        background-position 1px 323px
+        background-position px2rem(1) px2rem(323)
       .logo
        width px2rem(180)
        height px2rem(40)
        display block
        background-image url('//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/hd-s342878591a-9af1a97852.png')
-       background-position 1px 665px
-       margin-left 255px
-       margin-right 30px
+       background-position px2rem(1) px2rem(665)
+       margin-left px2rem(225)
+       margin-right px2rem(30)
       .right
-        margin-right 10px
+        margin-right px2rem(10)
         display flex
-        margin-left 72px
+        margin-left px2rem(72)
         position absolute
         right 0
         .search
@@ -57,14 +57,14 @@
           width px2rem(55)
           height px2rem(44)
           background-image url('//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/hd-s342878591a-9af1a97852.png')
-          background-position 1px 55px
-          margin-right 20px
+          background-position px2rem(1) px2rem(55)
+          margin-right px2rem(20)
         .cart
           display block
           width px2rem(55)
           height px2rem(44)
-          margin-right 20px
+          margin-right px2rem(20)
           background-image url('//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/hd-s342878591a-9af1a97852.png')
-          background-position 1px 388px
+          background-position px2rem(1) px2rem(388)
 
 </style>

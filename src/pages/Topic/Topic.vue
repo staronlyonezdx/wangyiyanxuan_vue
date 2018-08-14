@@ -42,6 +42,10 @@
       </div>
     </div>
 
+    <div class="goTop" @click="goTop">
+      <i></i>
+    </div>
+
   </div>
 </template>
 
@@ -62,17 +66,22 @@
       TopicList,
       Recommend,
       TopicShow,
-      MoreTopic
+      MoreTopic,
     },
     computed: {
       ...mapState(['recommend', 'zhenpin', 'yxLook'])
     },
     mounted() {
       this.$store.dispatch('getTopic', () => {
-        new BScroll('.wrapTopic', {
+        this.wrapScroll = new BScroll('.wrapTopic', {
           click: true
         })
       })
+    },
+    methods: {
+      goTop() {
+        this.wrapScroll.scrollTo(0,0,2000)
+      }
     }
 
   }
@@ -84,6 +93,16 @@
     width 100%
     height 100%
     background #f4f4f4
+    .goTop
+      position fixed
+      z-index 99
+      bottom px2rem(120)
+      right px2rem(34)
+      i
+        width px2rem(100)
+        height px2rem(100)
+        display block
+        background url('../../assets/images/goTop.png') no-repeat
     .wrapTopic
       height 90%
     .whiteSpace

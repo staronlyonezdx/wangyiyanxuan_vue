@@ -7,16 +7,16 @@
       </div>
       <div class="loginInfo">
         <div class="input-1">
-          <input type="text" placeholder="请输入手机号码">
+          <input type="text" :placeholder="placeholder" v-model="name">
         </div>
         <div class="input-2">
-          <input type="text" placeholder="请输入验证码">
+          <input :type="type==='email'?'password':'text'" :placeholder="pwdholder" v-model="pwd">
         </div>
         <div class="act">
-          <span class="left">遇到问题?</span>
-          <span class="right">使用验证码登陆</span>
+          <span class="left">{{text1}}</span>
+          <span class="right">{{text2}}</span>
         </div>
-        <div class="btnBlock">
+        <div class="btnBlock" @click.prevent="login">
           <span>登陆</span>
         </div>
       </div>
@@ -35,10 +35,66 @@
 
 <script>
   import TopBar from '../../components/TopBar/TopBar'
+  import {MessageBox} from 'mint-ui';
 
   export default {
+    data() {
+      return {
+        type: '',
+        placeholder: '',
+        pwdholder: '',
+        text1: '',
+        text2: '',
+        pwd: '',
+        name: ''
+      }
+    },
     components: {
       TopBar
+    },
+    beforeRouteEnter(to, from, next) {
+      //在进入该路由的时候就要改变type状态
+      next(component => {
+        const type = component.$route.params.type
+        // console.log(type);
+        component.type = type
+        if (component.type === 'phone') {
+          component.placeholder = '请输入手机号'
+          component.pwdholder = '请输入短信验证码'
+          component.text1 = '遇到问题?'
+          component.text2 = '使用密码验证登陆'
+        } else if (component.type === 'email') {
+          component.placeholder = '邮箱账号'
+          component.pwdholder = '密码'
+          component.text1 = '注册账号'
+          component.text2 = '忘记密码'
+        }
+      })
+    },
+    methods: {
+      showAlert(msg) {
+        MessageBox.alert(msg, '提示');
+      },
+      login() {
+        if (this.type === 'phone') {
+          if (/^1\d{10}$/.test(this.name)) {
+            this.showAlert('请输入正确的手机号')
+          }
+          if (/[a-z1-9]{3}/gi.test(this.pwd)) {
+            this.showAlert('请输入正确的验证码')
+          }
+        } else if (this.type === 'email') {
+          if (/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/gi.test(this.name)) {
+            this.showAlert('请输入正确的邮箱')
+          }
+          if (/^[a-zA-Z0-9]{4,10}$/gi.test(this.pwd)) {
+            this.showAlert('请输入正确的密码')
+          }
+        }
+
+        this.name = ''
+        this.pwd = ''
+      }
     }
   }
 </script>
@@ -64,19 +120,22 @@
       font-size px2rem(30)
       input
         height px2rem(96)
+        width 90%
         margin-left px2rem(20)
+        outline none
+        padding-left px2rem(10)
       .act
-         width 100%
-         height px2rem(96)
-         text-align center
-         line-height px2rem(96)
-         font-size px2rem(24)
-         .left
-           float left
-           margin-left px2rem(20)
-         .right
-           float right
-           margin-right px2rem(20)
+        width 100%
+        height px2rem(96)
+        text-align center
+        line-height px2rem(96)
+        font-size px2rem(24)
+        .left
+          float left
+          margin-left px2rem(20)
+        .right
+          float right
+          margin-right px2rem(20)
       .btnBlock
         width px2rem(673)
         height px2rem(96)
